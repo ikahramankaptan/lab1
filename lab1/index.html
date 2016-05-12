@@ -48,22 +48,23 @@
 	<script>
 
 		// your answer would go here
+		var sel;
+		function pinta(elemento, clase) {
+			elemento.prevAll().addClass(clase);
+			elemento.addClass(clase);
+		};
 		$(function () {
 			$('.rating-circle').hover(function () {
-				var parent = $("#rating-container")
-				var index = parent.children().index(this) + 1;
 				$('.rating-circle').removeClass('rating-chosen');
-				$('.rating-circle:lt(' + index + ')').addClass('rating-hover');
+				pinta($(this), 'rating-hover');
 			});
-			$('.rating-circle').mouseleave(function () {
+			$('.rating-circle').mouseout(function () {
 				$('.rating-circle').removeClass('rating-hover');
-				$('.rating-circle:lt(' + indexClick + ')').addClass('rating-chosen');
+				pinta(sel, 'rating-chosen');
 			});
 			$('.rating-circle').click(function () {
-				var parent = $("#rating-container")
-				var index = parent.children().index(this) + 1;
-				indexClick = index;
-				$('.rating-circle:lt(' + indexClick + ')').addClass('rating-chosen');
+				pinta($(this), 'rating-chosen');
+				sel = $(this);
 			});
 		});
 	</script>
